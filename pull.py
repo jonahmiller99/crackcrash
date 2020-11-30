@@ -19,7 +19,7 @@ def addToStack(number):
 
 
 # parse html with selenium
-driver = webdriver.Chrome()
+driver = webdriver.Chrome('/Users/jonahmiller/Downloads/chromedriver')
 driver.get("https://roobet.com/crash")
 
 # wait for page to load
@@ -27,12 +27,12 @@ time.sleep(5)
 # sleep(3)
 # using css selector to find the location of the "x" button... there is no id
 # I can find that css code with inspect but it changes all the time? i dont know why.... and it is very random
-css_loc = driver.find_element_by_css_selector('.MuiButtonBase-root-627')
+css_loc = driver.find_element_by_css_selector('.MuiButtonBase-root-656')
 css_loc.click()
 
 
 # while timer < x mins check top multiplier value and addToStack
-runtime = time.time() + 500
+runtime = time.time() + 86400
 
 while True:
     # find tick
@@ -51,7 +51,7 @@ while True:
     print(tick_value_float)
 
     # check to see if there is an actual duplicate (if yes append it)
-    if (tick_value2_float == tick_value_float):
+    if tick_value2_float == tick_value_float:
         duplicate_pair = (tick_value2_float, time.time())
 
         counter += 1
@@ -85,5 +85,5 @@ with open('crash_data.csv', 'w', newline='') as fp:
     a = csv.writer(fp, delimiter=',')
     a.writerows(map(lambda x: [x], multiplier_no_times))
 
-
+print(stack)
 
